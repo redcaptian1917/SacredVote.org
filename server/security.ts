@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 import crypto from "crypto";
 
 const isProd = process.env.NODE_ENV === "production";
-const RECOVERY_PASSWORD = process.env.RECOVERY_PASSWORD || "gcd93^NXk^fDcTe2RaZmCPhSkz&h5N";
+const RECOVERY_PASSWORD = process.env.RECOVERY_PASSWORD;
 
 // === IP Resolution ===
 export function getClientIp(req: Request): string {
@@ -111,7 +111,7 @@ export function clearAdminLoginAttempts(ip: string): void {
 
 export function verifyAdminReset(ip: string, token: string, password: string): boolean {
   console.log(`[DEBUG] [verifyAdminReset] Attempting lockout reset for token ${token.substring(0, 8)}... from IP: ${ip}`);
-  if (password !== RECOVERY_PASSWORD) {
+  if (!RECOVERY_PASSWORD || password !== RECOVERY_PASSWORD) {
     console.warn(`[SECURITY] [verifyAdminReset] Invalid recovery password from IP: ${ip}`);
     return false;
   }
