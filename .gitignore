@@ -1,0 +1,39 @@
+node_modules
+dist
+.DS_Store
+server/public
+vite.config.ts.*
+*.tar.gz
+
+# Environment & secrets — NEVER commit
+.env
+.env.*
+!.env.example
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+
+# Local/IDE state
+.local/
+.replit
+replit.nix
+.cache/
+.claude/
+
+# OS files
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Backups
+backups/
+*.sql.gz
+*.dump
+.agents/
+.config/
+attached_assets/
+uploads/
